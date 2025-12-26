@@ -37,6 +37,7 @@ def _validate_event_form(form) -> tuple[bool, dict, list[str]]:
     category = (form.get("category") or "").strip()
     description = (form.get("description") or "").strip()
 
+    # Validate title
     if len(title) < 3:
         errors.append("Title must be at least 3 characters.")
 

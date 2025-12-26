@@ -11,8 +11,6 @@ def export_week_pdf(any_date: Date, events: List[Event]) -> bytes:
     monday = any_date - timedelta(days=any_date.weekday())
     sunday = monday + timedelta(days=6)
 
-    buf = bytearray()
-    # ReportLab wants a file-like; use BytesIO
     import io
     bio = io.BytesIO()
     c = canvas.Canvas(bio, pagesize=A4)

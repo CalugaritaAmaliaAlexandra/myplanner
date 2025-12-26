@@ -31,3 +31,77 @@ Database is created automatically at `data/events.db`.
 ```bash
 pytest -q
 ```
+
+## File Descriptions
+
+### run.py
+Entry point of the application.
+Creates the Flask application using the application factory and starts the development server
+
+### app/__init__.py
+Initializes and configures the Flask application.  
+Creates the app instance, sets configuration values, initializes the database, and registers the application routes.
+
+### app/models.py
+Handles all database-related logic of the application.
+
+This module:
+- defines the `Event` data model using a dataclass
+- initializes the SQLite database and required tables
+- manages the database connection
+- implements all CRUD operations (create, read, update, delete)
+- provides query functions for listing, searching, and filtering events
+- contains utility queries for day, month, and week-based event retrieval
+
+The file acts as the data access layer, separating database logic from routing and presentation.
+
+### app/calendar_utils.py
+Provides helper functions for building the monthly calendar grid and formatting calendar data.
+
+### app/pdf_export.py
+Generates a weekly agenda PDF using ReportLab.
+
+This module provides `export_week_pdf(any_date, events)` which:
+- computes the Monday–Sunday range of the week containing `any_date`
+- groups the provided events by date and sorts them by time
+- renders a simple A4 PDF (title + day sections + event lines)
+- returns the PDF as `bytes`, ready to be sent as a file download
+
+### app/routes.py
+Defines all application routes and connects the user interface to the data layer.
+
+#### `_db()`
+Returns the SQLite database path from the application configuration.
+
+#### `_parse_int(value, default)`
+Safely parses an integer from a query parameter, falling back to a default value on failure.
+
+#### `_validate_event_form(form)`
+Validates and cleans event form data, returning validation status, cleaned data, and error messages.
+
+#### `home()`
+Redirects the root URL to the current month calendar view.
+
+#### `calendar_view()`
+Renders the monthly calendar view, including event counts and month navigation.
+
+#### `day_view(date_str)`
+Displays all events for a specific day after validating the date parameter.
+
+#### `add_event_view()`
+Handles event creation via a form (GET to display, POST to validate and save).
+
+#### `event_details(event_id)`
+Displays details for a single event or redirects if the event does not exist.
+
+#### `edit_event_view(event_id)`
+Handles editing of an existing event with form validation and database update.
+
+#### `delete_event_view(event_id)`
+Deletes an event and redirects the user with a success or error message.
+
+#### `search_view()`
+Provides keyword, category, and date range search for events.
+
+#### `export_week(date)`
+Generates and returns a weekly agenda PDF for download.

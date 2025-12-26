@@ -1,25 +1,144 @@
-.calendar-grid { background: #fff; }
-.calendar-head, .calendar-week {
+:root{
+  --accent: #1f6feb;           /* albastru “pro” */
+  --accent-soft: rgba(31,111,235,.12);
+
+  --bg: #f5f7fb;               /* fundal pagină */
+  --surface: #ffffff;          /* calendar block */
+  --surface-2: #f2f6ff;        /* header calendar */
+  --border: #d9e1ef;           /* borduri grid mai fine */
+
+  --text: #0f172a;
+  --muted: #64748b;
+}
+
+body{
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Brand: simplu, pro */
+.myplanner-brand{
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+/* Buttons: mai vizibile fără să fie “ciudate” */
+.btn{ border-radius: 10px; }
+.btn-primary{
+  background: var(--accent);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+.btn-primary:hover{
+  filter: brightness(.95);
+}
+.btn-outline-secondary{
+  border-color: #cbd5e1;
+  color: #334155;
+  font-weight: 600;
+}
+.btn-outline-secondary:hover{
+  background: #eef2ff;
+  border-color: #b6c2d6;
+}
+
+/* Calendar block: aici e “relieful” - doar pe container */
+.calendar-grid{
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+}
+
+/* grid - exact ca al tău */
+.calendar-head, .calendar-week{
   display: grid;
   grid-template-columns: repeat(7, 1fr);
 }
-.calendar-head > div {
+
+/* header */
+.calendar-head > div{
   padding: 10px;
-  font-weight: 600;
-  background: #f8f9fa;
-  border-bottom: 1px solid #dee2e6;
+  font-weight: 700;
+  color: var(--muted);
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
 }
-.calendar-cell {
+
+/* cells - rămân “table-like”, fără margini/rotunjiri */
+.calendar-cell{
   min-height: 90px;
   padding: 10px;
-  border-right: 1px solid #dee2e6;
-  border-bottom: 1px solid #dee2e6;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   text-decoration: none;
   color: inherit;
   display: block;
+  background: #fff;
 }
-.calendar-week .calendar-cell:last-child { border-right: none; }
-.calendar-cell:hover { background: #f8f9fa; }
-.calendar-cell.muted { background: #fcfcfc; }
-.calendar-cell.today { outline: 2px solid rgba(13,110,253,.5); outline-offset: -2px; }
-.day-number { font-weight: 700; }
+
+.calendar-week .calendar-cell:last-child{ border-right: none; }
+
+.calendar-cell:hover{
+  background: #f8fafc;
+}
+
+/* muted padding cells */
+.calendar-cell.muted{
+  background: #fafbff;
+}
+
+/* today: highlight clar, dar elegant */
+.calendar-cell.today{
+  background: var(--accent-soft);
+  outline: 2px solid rgba(31,111,235,.35);
+  outline-offset: -2px;
+}
+
+/* day number */
+.day-number{ font-weight: 800; }
+
+/* badge: coerent cu accent */
+.calendar-cell .badge{
+  background: var(--accent) !important;
+  font-weight: 700;
+  border-radius: 999px;
+}
+
+/* text-muted consistent */
+.text-muted{ color: var(--muted) !important; }
+
+/* ===== Navbar: dark, lizibil ===== */
+.navbar{
+  background: #0f172a !important;
+  border-bottom: 1px solid rgba(255,255,255,.12) !important;
+}
+
+/* Brand logo */
+.myplanner-brand{
+  text-decoration: none;
+}
+
+.myplanner-brand .brand-text{
+  font-family: "Century Gothic", Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: .78em;          /* SPACING MĂRIT */
+  font-size: 1.1rem;
+  color: #e5e7eb;
+}
+
+/* Buton Search – vizibil pe dark */
+.navbar .btn-outline-secondary{
+  color: #e5e7eb;
+  border-color: rgba(229,231,235,.4);
+  background: rgba(255,255,255,.06);
+  font-weight: 600;
+}
+
+.navbar .btn-outline-secondary:hover{
+  background: rgba(255,255,255,.14);
+  border-color: rgba(229,231,235,.6);
+  color: #ffffff;
+}
+
