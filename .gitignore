@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+data/events.db
+*.sqlite
+*.db
+.DS_Store

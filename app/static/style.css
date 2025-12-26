@@ -1,0 +1,25 @@
+.calendar-grid { background: #fff; }
+.calendar-head, .calendar-week {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+.calendar-head > div {
+  padding: 10px;
+  font-weight: 600;
+  background: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+.calendar-cell {
+  min-height: 90px;
+  padding: 10px;
+  border-right: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.calendar-week .calendar-cell:last-child { border-right: none; }
+.calendar-cell:hover { background: #f8f9fa; }
+.calendar-cell.muted { background: #fcfcfc; }
+.calendar-cell.today { outline: 2px solid rgba(13,110,253,.5); outline-offset: -2px; }
+.day-number { font-weight: 700; }

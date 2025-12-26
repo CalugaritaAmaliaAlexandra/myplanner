@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="h5 mb-3">Search & filtrare</h1>
+
+<form method="get" class="card card-body mb-3">
+  <div class="row g-3">
+    <div class="col-md-4">
+      <label class="form-label">Keyword</label>
+      <input name="q" class="form-control" value="{{ q }}">
+      <div class="form-text">Search in title and description.</div>
+    </div>
+    <div class="col-md-3">
+      <label class="form-label">Category</label>
+      <select name="category" class="form-select">
+        {% for c in categories %}
+          <option value="{{ c }}" {% if category==c %}selected{% endif %}>{{ c or "Any" }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-2">
+      <label class="form-label">From</label>
+      <input name="date_from" type="date" class="form-control" value="{{ date_from }}">
+    </div>
+    <div class="col-md-2">
+      <label class="form-label">To</label>
+      <input name="date_to" type="date" class="form-control" value="{{ date_to }}">
+    </div>
+    <div class="col-md-1 d-flex align-items-end">
+      <button class="btn btn-primary w-100">Search</button>
+    </div>
+  </div>
+</form>
+
+{% if events %}
+  <div class="list-group">
+    {% for e in events %}
+      <a class="list-group-item list-group-item-action" href="{{ url_for('main.event_details', event_id=e.id) }}">
+        <div class="d-flex justify-content-between">
+          <div class="fw-semibold">{{ e.title }}</div>
+          <div class="text-muted small">{{ e.date }} {{ e.time }}</div>
+        </div>
+        <div class="small text-muted">{{ e.category }}{% if e.description %} • {{ e.description[:120] }}{% endif %}</div>
+      </a>
+    {% endfor %}
+  </div>
+{% elif q or category or date_from or date_to %}
+  <div class="alert alert-warning">No results found.</div>
+{% else %}
+  <div class="text-muted">Introdu criteriile și apasă „Search”.</div>
+{% endif %}
+
+{% endblock %}
