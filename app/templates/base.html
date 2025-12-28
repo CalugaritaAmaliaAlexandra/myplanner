@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ title or "MyPlanner" }}</title>
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
@@ -24,7 +25,7 @@
 </nav>
 
 
-<main class="container my-4">
+<main class="container-fluid p-0">
   {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
       <div class="mb-3">
