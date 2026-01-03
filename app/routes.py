@@ -16,7 +16,7 @@ from .models import (
     list_events_for_week,
 )
 from .calendar_utils import month_grid, month_name
-from .pdf_export import export_week_pdf
+from .pdf_export import export_week_pdf, export_month_pdf
 
 bp = Blueprint("main", __name__)
 
@@ -206,6 +206,26 @@ def export_week():
     pdf_bytes = export_week_pdf(d, events)
 
     filename = f"agenda_{d.isoformat()}.pdf"
+    return send_file(
+        io.BytesIO(pdf_bytes),
+        mimetype="application/pdf",
+        as_attachment=True,
+        download_name=filename,
+    )
+@bp.get("/export/month")
+def export_month():
+    today = Date.today()
+    year = _parse_int(request.args.get("year"), today.year)
+    month = _parse_int(request.args.get("month"), today.month)
+
+    if month < 1 or month > 12:
+        flash("Invalid month.", "danger")
+        return redirect(url_for("main.home"))
+
+    events = list_events_for_month(_db(), year, month)
+    pdf_bytes = export_month_pdf(year, month, events)
+
+    filename = f"agenda_{year:04d}-{month:02d}.pdf"
     return send_file(
         io.BytesIO(pdf_bytes),
         mimetype="application/pdf",
