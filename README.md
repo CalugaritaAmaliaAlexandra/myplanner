@@ -38,7 +38,7 @@ Database is created automatically at `data/events.db`.
 pytest -q
 ```
 
-# Usage Instructions
+## Usage Instructions
 - Navigate the monthly calendar using the Previous / Next month buttons
 - Each day displays the number of scheduled events
 - Click on a day to view all events for that date
