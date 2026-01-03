@@ -1,6 +1,12 @@
 # MyPlanner (Calendar & Appointments) — Flask + SQLite
 
+## Short Description
 Local web app (runs on your computer) to manage events in a monthly calendar + day view, with full CRUD, search/filtering, and PDF export (weekly agenda).
+
+
+## Repository
+Girhub repository:
+https://github.com/MARIO200518/myplanner
 
 ## Install
 ```bash
@@ -31,6 +37,40 @@ Database is created automatically at `data/events.db`.
 ```bash
 pytest -q
 ```
+
+# Usage Instructions
+- Navigate the monthly calendar using the Previous / Next month buttons
+- Each day displays the number of scheduled events
+- Click on a day to view all events for that date
+- Add new events using the “Add event” form
+- Edit or delete existing events from the event details page
+- Search events by keyword, category, or date range
+- Export the current week’s agenda (Monday–Sunday) as a PDF file from the calendar page
+
+## Team Members & Individual Contributions
+
+This project was developed by a team of two members.
+
+### Amalia
+- Worked on Flask routes for adding, editing, and viewing events
+- Implemented form validation and input processing in Python
+- Created and modified HTML templates using Jinja2 and Bootstrap
+- Connected frontend pages with backend logic
+- Helped with overall application structure
+
+### Mario
+- Implemented the database logic using SQLite
+- Wrote functions for creating, reading, updating, and deleting events
+- Implemented calendar logic and date handling
+- Added weekly PDF export functionality using ReportLab
+- Helped integrate backend logic with frontend pages and documentation
+
+## Difficulties Encountered & Solutions
+
+- **Calendar generation:** solved using Python’s `calendar` module and a custom helper function.
+- **Form validation:** handled through server-side validation before database operations.
+- **PDF export:** implemented using ReportLab with manual layout control for pagination.
+- **Code organization:** resolved by separating logic into routes, models, utilities, and templates.
 
 ## File Descriptions
 
