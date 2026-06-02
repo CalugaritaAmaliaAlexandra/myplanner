@@ -3,11 +3,6 @@
 ## Short Description
 Local web app (runs on your computer) to manage events in a monthly calendar + day view, with full CRUD, search/filtering, and PDF export (weekly agenda).
 
-
-## Repository
-Girhub repository:
-https://github.com/MARIO200518/myplanner
-
 ## Install
 ```bash
 python3 -m venv .venv
